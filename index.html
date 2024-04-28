@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 48px;
+      margin-top: 50px;
+    }
+    .container {
+      margin-top: 50px;
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container input {
+      margin-left: 20px;
+    }
+
+    .container label {
+      margin-left: 30px;
+    }
+    .container button {
+      margin-left: 20px;
+      background-color: aqua;
+      border: none;
+      padding: 10px;
+      color: brown;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <div class="clock" id="clock"></div>
+
+    <div class="container">
+      <label for="date1">Enter Date :</label>
+      <input type="date" id="date1" />
+
+      <label for="date2">Enter Date :</label>
+      <input type="date" id="date2" />
+
+      <button onclick="calculator()">calculate</button>
+    </div>
+    <p id="result"></p>
+
+    <script>
+      const date = new Date();
+      console.log(date);
+
+      const month = date.getMonth();
+      console.log(month);
+
+      const year = date.getFullYear();
+      console.log(year);
+
+      const day = date.getDate();
+      console.log(day);
+
+      const dayofweek = date.getDay();
+      console.log(dayofweek);
+
+      function time() {
+        const date = new Date();
+        const timestring = date.toLocaleTimeString();
+
+        document.getElementById("clock").innerText = timestring;
+      }
+
+      setInterval(time, 1000);
+
+      time();
+
+      function calculator() {
+        const input1 = document.getElementById("date1").value;
+        const date1 = new Date(input1);
+
+        const input2 = document.getElementById("date2").value;
+        const date2 = new Date(input2);
+
+        let age = date1.getFullYear() - date2.getFullYear();
+
+        const monthdiff = date1.getMonth() - date2.getMonth();
+
+        console.log(monthdiff);
+
+        if (
+          monthdiff < 0 ||
+          (monthdiff === 0 && date1.getDate() < date2.getDate())
+        ) {
+          age--;
+        }
+
+        const result = document.getElementById("result");
+        result.innerText = `Difference is ${age}`;
+      }
+    </script>
+  </body>
+</html>
